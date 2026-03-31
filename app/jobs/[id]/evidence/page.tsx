@@ -131,7 +131,7 @@ export default function EvidencePage() {
       <div className="rounded-2xl border border-border bg-card p-4">
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div>
-            <p className="text-sm font-semibold text-foreground">Employment evidence</p>
+            <p className="text-sm font-semibold text-foreground">Employment Experience</p>
             <p className="mt-1 text-sm text-muted-foreground">
               Generate resume-ready bullets from the answers you just completed.
             </p>
@@ -141,7 +141,7 @@ export default function EvidencePage() {
             href={`/jobs/${id}/documents`}
             className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 hover:bg-primary/90"
           >
-            Build my resume
+            Build My Resume
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -162,7 +162,7 @@ export default function EvidencePage() {
           onClick={handleParse}
           className="inline-flex h-12 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 px-4 text-sm font-semibold text-primary hover:bg-primary/15"
         >
-          Parse evidence
+          Parse Experience
         </button>
       </div>
 
