@@ -2,6 +2,9 @@
   "/dashboard/page": "app/dashboard/page.js",
   "/pipeline/interested/page": "app/pipeline/interested/page.js",
   "/jobs/new/page": "app/jobs/new/page.js",
+  "/api/job-listing-research/route": "app/api/job-listing-research/route.js",
   "/jobs/[id]/page": "app/jobs/[id]/page.js",
-  "/jobs/[id]/research/page": "app/jobs/[id]/research/page.js"
+  "/api/jobs/[id]/route": "app/api/jobs/[id]/route.js",
+  "/jobs/[id]/research/page": "app/jobs/[id]/research/page.js",
+  "/jobs/[id]/questions/page": "app/jobs/[id]/questions/page.js"
 }
