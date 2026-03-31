@@ -7,6 +7,7 @@
   "/pipeline/ready/page": "app/pipeline/ready/page.js",
   "/pipeline/applied/page": "app/pipeline/applied/page.js",
   "/jobs/new/page": "app/jobs/new/page.js",
+  "/api/listing-intake/route": "app/api/listing-intake/route.js",
   "/jobs/[id]/page": "app/jobs/[id]/page.js",
   "/api/jobs/[id]/route": "app/api/jobs/[id]/route.js",
   "/jobs/[id]/research/page": "app/jobs/[id]/research/page.js",
