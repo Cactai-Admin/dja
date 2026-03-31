@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Plus, Sparkles, Trophy, Zap } from 'lucide-react';
 import { MainLayout } from '@/components/layout/main-layout';
-import { JobCard } from '@/components/dashboard/job-card';
+import  JobCard  from '@/components/dashboard/job-card';
 import { StatsBar } from '@/components/dashboard/stats-bar';
 import { getCurrentWorkflowStage } from '@/lib/pipeline';
 import { getRecommendedJobs, getAddedJobs, getVisibleJobs } from '@/lib/jobs';
