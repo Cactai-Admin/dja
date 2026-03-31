@@ -2,6 +2,8 @@
   "/settings/page": "app/settings/page.js",
   "/jobs/new/page": "app/jobs/new/page.js",
   "/pipeline/applied/page": "app/pipeline/applied/page.js",
+  "/jobs/[id]/page": "app/jobs/[id]/page.js",
+  "/api/jobs/[id]/route": "app/api/jobs/[id]/route.js",
   "/jobs/[id]/research/page": "app/jobs/[id]/research/page.js",
   "/jobs/[id]/questions/page": "app/jobs/[id]/questions/page.js"
 }
