@@ -103,6 +103,7 @@ export async function POST(req: NextRequest) {
       .single();
 
     if (applicationError) {
+      await supabase.from('job_listings').delete().eq('id', listing.id);
       return NextResponse.json(
         { data: null, error: applicationError.message },
         { status: 400 }
