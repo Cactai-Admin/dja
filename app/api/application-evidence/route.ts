@@ -1,7 +1,93 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getSupabaseClient, getDevUserId } from '@/lib/supabase';
+
 const supabase = getSupabaseClient();
-const Schema = z.object({ application_id: z.string().min(1), title: z.string().min(1), source_application_answer_id: z.string().nullable().optional(), resume_bullet: z.string().optional().default(''), evidence_type: z.string().optional().default('resume_bullet'), company: z.string().optional().default(''), department: z.string().optional().default(''), role: z.string().optional().default(''), dates: z.string().optional().default(''), situation: z.string().optional().default(''), task: z.string().optional().default(''), action: z.string().optional().default(''), result: z.string().optional().default(''), metrics: z.array(z.string()).optional().default([]), tools: z.array(z.string()).optional().default([]), technologies: z.array(z.string()).optional().default([]), skills: z.array(z.string()).optional().default([]), keywords: z.array(z.string()).optional().default([]), is_selected: z.boolean().optional().default(true), notes: z.string().optional().default('') });
-export async function GET(req: NextRequest) { const { searchParams } = new URL(req.url); const application_id = searchParams.get('application_id'); if (!application_id) return NextResponse.json({ data: [], error:'application_id required' }, {status:400}); const { data, error } = await supabase.from('application_evidence').select('*').eq('application_id', application_id).order('updated_at',{ascending:false}); if (error) return NextResponse.json({ data: [], error:error.message }, {status:500}); return NextResponse.json({ data:data ?? [], error:null}); }
-export async function POST(req: NextRequest) { try { const body = await req.json(); const items = Array.isArray(body) ? body : [body]; const parsed = z.array(Schema).safeParse(items); if (!parsed.success) return NextResponse.json({ data:null,error:parsed.error.errors[0]?.message }, {status:400}); const rows = parsed.data.map((r)=>({ ...r, user_id:getDevUserId() })); if (rows[0]) await supabase.from('application_evidence').delete().eq('application_id', rows[0].application_id); const { data, error } = await supabase.from('application_evidence').insert(rows).select(); if (error) return NextResponse.json({ data:null,error:error.message }, {status:400}); return NextResponse.json({ data:data ?? [], error:null }, {status:201}); } catch { return NextResponse.json({ data:null,error:'Internal server error' }, {status:500}); } }
+
+const Schema = z.object({
+  id: z.string().optional(),
+  application_id: z.string().min(1),
+  title: z.string().min(1),
+  source_application_answer_id: z.string().nullable().optional(),
+  resume_bullet: z.string().optional().default(''),
+  evidence_type: z.string().optional().default('resume_bullet'),
+  company: z.string().optional().default(''),
+  department: z.string().optional().default(''),
+  role: z.string().optional().default(''),
+  dates: z.string().optional().default(''),
+  situation: z.string().optional().default(''),
+  task: z.string().optional().default(''),
+  action: z.string().optional().default(''),
+  result: z.string().optional().default(''),
+  metrics: z.array(z.string()).optional().default([]),
+  tools: z.array(z.string()).optional().default([]),
+  technologies: z.array(z.string()).optional().default([]),
+  skills: z.array(z.string()).optional().default([]),
+  keywords: z.array(z.string()).optional().default([]),
+  is_selected: z.boolean().optional().default(true),
+  notes: z.string().optional().default(''),
+});
+
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const application_id = searchParams.get('application_id');
+
+  if (!application_id) {
+    return NextResponse.json({ data: [], error: 'application_id required' }, { status: 400 });
+  }
+
+  const { data, error } = await supabase
+    .from('application_evidence')
+    .select('*')
+    .eq('application_id', application_id)
+    .order('updated_at', { ascending: false });
+
+  if (error) {
+    return NextResponse.json({ data: [], error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json({ data: data ?? [], error: null });
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const items = Array.isArray(body) ? body : [body];
+    const parsed = z.array(Schema).safeParse(items);
+
+    if (!parsed.success) {
+      return NextResponse.json({ data: null, error: parsed.error.errors[0]?.message }, { status: 400 });
+    }
+
+    const rows = parsed.data.map(({ id, ...row }) => ({
+      ...row,
+      id,
+      user_id: getDevUserId(),
+      updated_at: new Date().toISOString(),
+    }));
+
+    if (rows.length === 0) {
+      return NextResponse.json({ data: [], error: null });
+    }
+
+    const { error } = await supabase.from('application_evidence').upsert(rows);
+
+    if (error) {
+      return NextResponse.json({ data: null, error: error.message }, { status: 400 });
+    }
+
+    const { data: refreshed, error: refreshError } = await supabase
+      .from('application_evidence')
+      .select('*')
+      .eq('application_id', rows[0].application_id)
+      .order('updated_at', { ascending: false });
+
+    if (refreshError) {
+      return NextResponse.json({ data: null, error: refreshError.message }, { status: 400 });
+    }
+
+    return NextResponse.json({ data: refreshed ?? [], error: null }, { status: 201 });
+  } catch {
+    return NextResponse.json({ data: null, error: 'Internal server error' }, { status: 500 });
+  }
+}

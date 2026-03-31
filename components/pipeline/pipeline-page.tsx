@@ -54,7 +54,7 @@ export function PipelinePage({ title, description, jobs }: PipelinePageProps) {
                 className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90"
               >
                 <Plus className="h-4 w-4" />
-                It's a Ghost Town Around Here...Add a New Job to Get Started
+                It&apos;s a Ghost Town Around Here...Add a New Job to Get Started
               </Link>
             </div>
           </section>

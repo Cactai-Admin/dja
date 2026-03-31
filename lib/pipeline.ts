@@ -9,7 +9,7 @@ export const WORKFLOW_STAGES: WorkflowStage[] = [
 ];
 
 export const PIPELINE_STAGE_LABELS: Record<PipelineStage, string> = {
-  new: 'New', preparing: 'Preparing', applied: 'Applied', outcome: 'Outcome'
+  added_jobs: 'Added Jobs', preparing: 'Preparing', applied: 'Applied', outcome: 'Outcome'
 };
 
 export function getCurrentWorkflowStage(stage: ApplicationStage | null): WorkflowStage | null {
@@ -25,9 +25,9 @@ export function getNextWorkflowStage(stage: ApplicationStage | null): WorkflowSt
 }
 
 export function getPipelineProgress(stage: PipelineStage): number {
-  return { new: 10, preparing: 55, applied: 80, outcome: 100 }[stage] ?? 0;
+  return { added_jobs: 10, preparing: 55, applied: 80, outcome: 100 }[stage] ?? 0;
 }
 
 export function getCurrentLifecycleLabel(job: PipelineJob): string { return PIPELINE_STAGE_LABELS[job.pipeline_stage]; }
 
-export const PIPELINE_STAGE_COLORS: Record<PipelineStage, string> = { new: 'bg-blue-500/15 text-blue-400 border-blue-500/25', preparing: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/25', applied: 'bg-violet-500/15 text-violet-400 border-violet-500/25', outcome: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/25' };
+export const PIPELINE_STAGE_COLORS: Record<PipelineStage, string> = { added_jobs: 'bg-blue-500/15 text-blue-400 border-blue-500/25', preparing: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/25', applied: 'bg-violet-500/15 text-violet-400 border-violet-500/25', outcome: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/25' };

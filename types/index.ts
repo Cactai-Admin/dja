@@ -1,6 +1,6 @@
 /* Core application types aligned to the v1 schema */
 
-export type PipelineStage = 'new' | 'preparing' | 'applied' | 'outcome';
+export type PipelineStage = 'added_jobs' | 'preparing' | 'applied' | 'outcome';
 export type ApplicationStage = 'research' | 'questions' | 'evidence' | 'resume' | 'cover_letter' | 'completed' | 'sent' | 'received' | 'interviewing' | 'offer' | 'negotiating' | 'won' | 'lost' | 'ghosted';
 export type KeywordCategory = 'skill' | 'tool' | 'technology' | 'industry' | 'department' | 'role' | 'specialty' | 'soft_skill' | 'credential' | 'metric' | 'other';
 export type QuestionType = 'behavioral' | 'technical' | 'situational' | 'competency' | 'values' | 'other';
