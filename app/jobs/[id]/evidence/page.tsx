@@ -105,26 +105,28 @@ export default function EvidencePage() {
   );
 
   async function handleParse() {
-    if (!job?.application_id) return;
+  if (!job?.application_id) return;
 
-    const units = parseEvidence(raw, job.application_id, answers);
-    setParsed(units as ApplicationEvidence[]);
+  const units = parseEvidence(raw, job.application_id, answers);
 
-    await fetch('/api/application-evidence', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(units),
-    });
+  const res = await fetch('/api/application-evidence', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(units),
+  });
 
-    await fetch(`/api/jobs/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        application_stage: 'resume',
-        application_resume_started_at: new Date().toISOString(),
-      }),
-    });
-  }
+  const payload = await res.json();
+  setParsed(payload.data ?? []);
+
+  await fetch(`/api/jobs/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      application_stage: 'resume',
+      application_resume_started_at: new Date().toISOString(),
+    }),
+  });
+}
 
   return (
     <div className="space-y-6">
