@@ -3,5 +3,8 @@
   "/settings/page": "app/settings/page.js",
   "/jobs/new/page": "app/jobs/new/page.js",
   "/pipeline/applied/page": "app/pipeline/applied/page.js",
-  "/api/jobs/route": "app/api/jobs/route.js"
+  "/api/jobs/route": "app/api/jobs/route.js",
+  "/api/job-listing-research/route": "app/api/job-listing-research/route.js",
+  "/api/jobs/[id]/route": "app/api/jobs/[id]/route.js",
+  "/jobs/[id]/research/page": "app/jobs/[id]/research/page.js"
 }
