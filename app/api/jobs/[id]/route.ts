@@ -4,7 +4,7 @@ import { getSupabaseClient } from '@/lib/supabase';
 const supabase = getSupabaseClient();
 
 export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
-  const { data, error } = await supabase.from('job_listings').select('*').eq('job_listing_id', params.id).maybeSingle();
+  const { data, error } = await supabase.from('job_listings').select('*').eq('id', params.id).maybeSingle();
   if (error) return NextResponse.json({ data: null, error: error.message }, { status: 404 });
   return NextResponse.json({ data: data ? { ...data, id: data.job_listing_id } : null, error: null });
 }
