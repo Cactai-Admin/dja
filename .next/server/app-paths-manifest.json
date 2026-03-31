@@ -6,5 +6,6 @@
   "/jobs/[id]/page": "app/jobs/[id]/page.js",
   "/api/jobs/[id]/route": "app/api/jobs/[id]/route.js",
   "/jobs/[id]/research/page": "app/jobs/[id]/research/page.js",
-  "/jobs/[id]/questions/page": "app/jobs/[id]/questions/page.js"
+  "/jobs/[id]/questions/page": "app/jobs/[id]/questions/page.js",
+  "/jobs/[id]/documents/page": "app/jobs/[id]/documents/page.js"
 }
