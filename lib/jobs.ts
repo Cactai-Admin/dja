@@ -14,7 +14,7 @@ export async function getJobs(): Promise<PipelineJob[]> {
 
 export async function getJobById(id: string): Promise<PipelineJob | null> {
   const supabase = await createSupabaseClient();
-  const { data, error } = await supabase.from('pipeline_job_listing_state').select('*').eq('job_listing_id', id).maybeSingle();
+  const { data, error } = await supabase.from('job_listings').select('*').eq('id', id).maybeSingle();
   if (error) throw new Error(error.message);
   return ((data ? { ...data, id: data.job_listing_id } : null) as PipelineJob | null);
 }
