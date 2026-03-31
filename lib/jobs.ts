@@ -48,7 +48,7 @@ export async function getRecommendedJobs(): Promise<PipelineJob[]> {
   return jobs.filter((j) => !!j.job_listing_recommended_at && !j.job_listing_added_at);
 }
 
-export async function getInterestedJobs(): Promise<PipelineJob[]> {
+export async function getAddedJobs(): Promise<PipelineJob[]> {
   const jobs = await getJobs();
   return jobs.filter((j) => !!j.job_listing_added_at && j.pipeline_stage === 'new');
 }
