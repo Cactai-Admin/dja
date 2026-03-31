@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="en" data-palette="mono" data-mode="light"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" href="/_next/static/media/e4af272ccee01ff0-s.p.woff2" as="font" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/28fb6ab89bbaa364.css" data-precedence="next"/><link rel="preload" href="/_next/static/chunks/webpack-478c5f80cad8caa9.js" as="script" fetchPriority="low"/><script src="/_next/static/chunks/fd9d1056-010fe255df1ad620.js" async=""></script><script src="/_next/static/chunks/864-72f1e5d29f227d58.js" async=""></script><script src="/_next/static/chunks/main-app-371d7f7c167a70be.js" async=""></script><title>Dream Job App</title><meta name="description" content="From job search to hired — easy, fast, professional."/><meta name="next-size-adjust"/><script>
+(function () {
+  try {
+    var STORAGE_PALETTE = 'dja-palette';
+    var STORAGE_MODE = 'dja-mode';
+    var STORAGE_DARK_PALETTE = 'dja-dark-palette';
+
+    var mode = localStorage.getItem(STORAGE_MODE) || 'light';
+    var savedPalette = localStorage.getItem(STORAGE_PALETTE) || 'mono';
+    var savedDarkPalette = localStorage.getItem(STORAGE_DARK_PALETTE) || 'mono';
+    var root = document.documentElement;
+
+    var palette = mode === 'light' ? 'mono' : savedDarkPalette;
+
+    if (savedPalette && savedPalette !== 'mono') {
+      savedDarkPalette = savedPalette;
+      localStorage.setItem(STORAGE_DARK_PALETTE, savedDarkPalette);
+      if (mode === 'dark') {
+        palette = savedDarkPalette;
+      }
+    }
+
+    var PALETTES = {
+      'volt-green': {
+        light: {
+          background: '0 0% 100%',
+          foreground: '0 0% 5%',
+          card: '0 0% 98%',
+          cardForeground: '0 0% 5%',
+          popover: '0 0% 100%',
+          popoverForeground: '0 0% 5%',
+          sidebar: '0 0% 96%',
+          sidebarBorder: '0 0% 88%',
+          primary: '0 0% 6%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 92%',
+          secondaryForeground: '0 0% 5%',
+          muted: '0 0% 94%',
+          mutedForeground: '0 0% 44%',
+          accent: '0 0% 92%',
+          accentForeground: '0 0% 5%',
+          destructive: '0 70% 45%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 88%',
+          input: '0 0% 94%',
+          ring: '0 0% 20%',
+          radius: '0.625rem'
+        },
+        dark: {
+          background: '0 0% 10%',
+          foreground: '0 0% 95%',
+          card: '0 0% 12%',
+          cardForeground: '0 0% 95%',
+          popover: '0 0% 11%',
+          popoverForeground: '0 0% 95%',
+          sidebar: '0 0% 8%',
+          sidebarBorder: '0 0% 17%',
+          primary: '71 100% 49%',
+          primaryForeground: '0 0% 6%',
+          secondary: '0 0% 16%',
+          secondaryForeground: '0 0% 90%',
+          muted: '0 0% 15%',
+          mutedForeground: '0 0% 55%',
+          accent: '0 0% 17%',
+          accentForeground: '0 0% 95%',
+          destructive: '0 80% 55%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 18%',
+          input: '0 0% 14%',
+          ring: '71 100% 49%',
+          radius: '0.625rem'
+        }
+      },
+      'volt-red': {
+        light: {
+          background: '0 0% 100%',
+          foreground: '0 0% 5%',
+          card: '0 0% 98%',
+          cardForeground: '0 0% 5%',
+          popover: '0 0% 100%',
+          popoverForeground: '0 0% 5%',
+          sidebar: '0 0% 96%',
+          sidebarBorder: '0 0% 88%',
+          primary: '0 0% 6%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 92%',
+          secondaryForeground: '0 0% 5%',
+          muted: '0 0% 94%',
+          mutedForeground: '0 0% 44%',
+          accent: '0 0% 92%',
+          accentForeground: '0 0% 5%',
+          destructive: '0 70% 45%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 88%',
+          input: '0 0% 94%',
+          ring: '0 0% 20%',
+          radius: '0.625rem'
+        },
+        dark: {
+          background: '0 0% 10%',
+          foreground: '0 0% 95%',
+          card: '0 0% 12%',
+          cardForeground: '0 0% 95%',
+          popover: '0 0% 11%',
+          popoverForeground: '0 0% 95%',
+          sidebar: '0 0% 8%',
+          sidebarBorder: '0 0% 17%',
+          primary: '352 100% 52%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 16%',
+          secondaryForeground: '0 0% 90%',
+          muted: '0 0% 15%',
+          mutedForeground: '0 0% 55%',
+          accent: '0 0% 17%',
+          accentForeground: '0 0% 95%',
+          destructive: '0 80% 55%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 18%',
+          input: '0 0% 14%',
+          ring: '352 100% 52%',
+          radius: '0.625rem'
+        }
+      },
+      'volt-blue': {
+        light: {
+          background: '0 0% 100%',
+          foreground: '0 0% 5%',
+          card: '0 0% 98%',
+          cardForeground: '0 0% 5%',
+          popover: '0 0% 100%',
+          popoverForeground: '0 0% 5%',
+          sidebar: '0 0% 96%',
+          sidebarBorder: '0 0% 88%',
+          primary: '0 0% 6%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 92%',
+          secondaryForeground: '0 0% 5%',
+          muted: '0 0% 94%',
+          mutedForeground: '0 0% 44%',
+          accent: '0 0% 92%',
+          accentForeground: '0 0% 5%',
+          destructive: '0 70% 45%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 88%',
+          input: '0 0% 94%',
+          ring: '0 0% 20%',
+          radius: '0.625rem',
+          chart1: '0 0% 12%',
+          chart2: '0 0% 24%',
+          chart3: '0 0% 36%',
+          chart4: '0 0% 52%',
+          chart5: '0 0% 68%'
+        },
+        dark: {
+          background: '0 0% 10%',
+          foreground: '0 0% 95%',
+          card: '0 0% 12%',
+          cardForeground: '0 0% 95%',
+          popover: '0 0% 11%',
+          popoverForeground: '0 0% 95%',
+          sidebar: '0 0% 8%',
+          sidebarBorder: '0 0% 17%',
+          primary: '217 91% 55%',
+          primaryForeground: '0 0% 100%',
+          secondary: '217 30% 15%',
+          secondaryForeground: '210 40% 90%',
+          muted: '220 25% 14%',
+          mutedForeground: '215 25% 58%',
+          accent: '217 30% 16%',
+          accentForeground: '210 40% 95%',
+          destructive: '0 80% 60%',
+          destructiveForeground: '0 0% 100%',
+          border: '220 30% 16%',
+          input: '220 30% 14%',
+          ring: '217 91% 55%',
+          radius: '0.625rem',
+          chart1: '217 80% 60%',
+          chart2: '172 66% 50%',
+          chart3: '43 96% 56%',
+          chart4: '142 76% 46%',
+          chart5: '25 95% 60%'
+        }
+      },
+      'mono': {
+        light: {
+          background: '0 0% 100%',
+          foreground: '0 0% 5%',
+          card: '0 0% 98%',
+          cardForeground: '0 0% 5%',
+          popover: '0 0% 100%',
+          popoverForeground: '0 0% 5%',
+          sidebar: '0 0% 96%',
+          sidebarBorder: '0 0% 88%',
+          primary: '0 0% 6%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 92%',
+          secondaryForeground: '0 0% 5%',
+          muted: '0 0% 94%',
+          mutedForeground: '0 0% 44%',
+          accent: '0 0% 92%',
+          accentForeground: '0 0% 5%',
+          destructive: '0 70% 45%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 88%',
+          input: '0 0% 94%',
+          ring: '0 0% 20%',
+          radius: '0.625rem',
+          chart1: '0 0% 12%',
+          chart2: '0 0% 24%',
+          chart3: '0 0% 36%',
+          chart4: '0 0% 52%',
+          chart5: '0 0% 68%'
+        },
+        dark: {
+          background: '0 0% 4%',
+          foreground: '0 0% 95%',
+          card: '0 0% 7%',
+          cardForeground: '0 0% 95%',
+          popover: '0 0% 6%',
+          popoverForeground: '0 0% 95%',
+          sidebar: '0 0% 5%',
+          sidebarBorder: '0 0% 12%',
+          primary: '0 0% 83%',
+          primaryForeground: '0 0% 5%',
+          secondary: '0 0% 13%',
+          secondaryForeground: '0 0% 90%',
+          muted: '0 0% 12%',
+          mutedForeground: '0 0% 52%',
+          accent: '0 0% 14%',
+          accentForeground: '0 0% 95%',
+          destructive: '0 70% 55%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 14%',
+          input: '0 0% 12%',
+          ring: '0 0% 70%',
+          radius: '0.625rem',
+          chart1: '0 0% 83%',
+          chart2: '0 0% 68%',
+          chart3: '0 0% 52%',
+          chart4: '0 0% 36%',
+          chart5: '0 0% 24%'
+        }
+      }
+    };
+
+    var paletteSet = PALETTES[palette] || PALETTES['mono'];
+    var tokens = paletteSet[mode] || paletteSet.light;
+
+    root.setAttribute('data-palette', palette);
+    root.setAttribute('data-mode', mode);
+
+    Object.keys(tokens).forEach(function (key) {
+      var cssVar = '--' + key.replace(/[A-Z]/g, function (m) {
+        return '-' + m.toLowerCase();
+      });
+      root.style.setProperty(cssVar, tokens[key]);
+    });
+  } catch (e) {}
+})();
+</script><script src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" noModule=""></script></head><body class="__className_f367f3"><div class="min-h-dvh bg-background"><aside class="fixed left-0 top-0 z-30 hidden h-screen w-60 border-r border-sidebar-border bg-sidebar lg:flex lg:flex-col"><div class="border-b border-sidebar-border px-5 py-5"><a class="group flex items-center gap-2.5" href="/dashboard"><div class="flex items-center gap-2.5"><div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary" style="box-shadow:0 0 18px hsl(var(--primary) / 0.45), 0 0 36px hsl(var(--primary) / 0.22)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles h-4 w-4 text-primary-foreground"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg></div><div class="min-w-0"><p class="truncate text-sm font-semibold uppercase leading-tight text-foreground">Dream Job</p><p class="truncate text-xs leading-tight tracking-wide text-muted-foreground">by Cactai Inc.</p></div></div></a></div><nav class="flex-1 space-y-0.5 overflow-y-auto px-3 py-4"><a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 text-muted-foreground hover:bg-white/5 hover:text-foreground" href="/dashboard"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard h-4 w-4 shrink-0"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg><span class="truncate">Dashboard</span></a><div class="px-3 pb-1 pt-4"><p class="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">Pipeline</p></div><a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 text-muted-foreground hover:bg-white/5 hover:text-foreground" href="/pipeline/applied"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send h-4 w-4 shrink-0"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg><span class="truncate">Applied</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right ml-auto h-3 w-3 opacity-40"><path d="m9 18 6-6-6-6"></path></svg></a><a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 text-muted-foreground hover:bg-white/5 hover:text-foreground" href="/pipeline/ready"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-check2 h-4 w-4 shrink-0"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="m3 15 2 2 4-4"></path></svg><span class="truncate">Ready</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right ml-auto h-3 w-3 opacity-40"><path d="m9 18 6-6-6-6"></path></svg></a><a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 bg-primary/10 text-primary" href="/pipeline/interested"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart h-4 w-4 shrink-0"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg><span class="truncate">Interested</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right ml-auto h-3 w-3 opacity-40"><path d="m9 18 6-6-6-6"></path></svg></a><a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 text-muted-foreground hover:bg-white/5 hover:text-foreground" href="/pipeline/recommended"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles h-4 w-4 shrink-0"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg><span class="truncate">Recommended</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right ml-auto h-3 w-3 opacity-40"><path d="m9 18 6-6-6-6"></path></svg></a></nav><div class="space-y-0.5 border-t border-sidebar-border px-3 py-3 safe-bottom"><a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 bg-foreground text-background hover:bg-primary hover:text-primary-foreground" href="/settings"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings h-4 w-4 shrink-0"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>Settings</a><p class="px-3 pt-1 text-[10px] leading-relaxed text-muted-foreground/40">Dream Job App · v1 rewrite</p></div></aside><div class="lg:hidden"><button type="button" aria-label="Open workspace map" class="fixed bottom-4 left-4 z-40 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-border/80 bg-card/95 text-foreground shadow-xl shadow-black/15 backdrop-blur supports-[backdrop-filter]:bg-card/85" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:Rammmla:" data-state="closed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-open h-5 w-5"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path><path d="m14 9 3 3-3 3"></path></svg></button></div><main class="min-w-0 lg:ml-60"><div class="page-shell pb-24 lg:pb-0"><div class="page-container space-y-6"><div class="space-y-4"><a class="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="/dashboard"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left h-4 w-4"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Back to Dashboard</a><div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><div class="mb-1 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase-business h-5 w-5 text-primary"><path d="M12 12h.01"></path><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path d="M22 13a18.15 18.15 0 0 1-20 0"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg><h1 class="text-2xl font-bold text-foreground">Interested</h1></div><p class="text-sm text-muted-foreground">Listings you added and have not started working yet.</p></div><div class="inline-flex w-fit items-center rounded-full border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground">0<!-- --> jobs</div></div></div><section class="rounded-2xl border border-dashed border-border bg-card/60 p-8 text-center"><h2 class="text-lg font-semibold text-foreground">No jobs here yet</h2><p class="mt-2 text-sm text-muted-foreground">Listings you added and have not started working yet.</p><div class="mt-5 flex justify-center"><a class="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90" href="/jobs/new"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>It&#x27;s a Ghost Town Around Here...Add a New Job to Get Started</a></div></section></div></div></main></div><script src="/_next/static/chunks/webpack-478c5f80cad8caa9.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/e4af272ccee01ff0-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/28fb6ab89bbaa364.css\",\"style\"]\n0:\"$L3\"\n"])</script><script>self.__next_f.push([1,"4:I{\"id\":6054,\"chunks\":[\"272:static/chunks/webpack-478c5f80cad8caa9.js\",\"971:static/chunks/fd9d1056-010fe255df1ad620.js\",\"864:static/chunks/864-72f1e5d29f227d58.js\"],\"name\":\"\",\"async\":false}\n6:I{\"id\":1729,\"chunks\":[\"272:static/chunks/webpack-478c5f80cad8caa9.js\",\"971:static/chunks/fd9d1056-010fe255df1ad620.js\",\"864:static/chunks/864-72f1e5d29f227d58.js\"],\"name\":\"\",\"async\":false}\n8:I{\"id\":3654,\"chunks\":[\"185:static/chunks/app/layout-933eee3c22b1facf.js\"],\"name\":\"ThemeProvider\",\"async\":false}\n9:I{\"id\":1443,\"c"])</script><script>self.__next_f.push([1,"hunks\":[\"272:static/chunks/webpack-478c5f80cad8caa9.js\",\"971:static/chunks/fd9d1056-010fe255df1ad620.js\",\"864:static/chunks/864-72f1e5d29f227d58.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":8639,\"chunks\":[\"272:static/chunks/webpack-478c5f80cad8caa9.js\",\"971:static/chunks/fd9d1056-010fe255df1ad620.js\",\"864:static/chunks/864-72f1e5d29f227d58.js\"],\"name\":\"\",\"async\":false}\n7:T201e,"])</script><script>self.__next_f.push([1,"\n(function () {\n  try {\n    var STORAGE_PALETTE = 'dja-palette';\n    var STORAGE_MODE = 'dja-mode';\n    var STORAGE_DARK_PALETTE = 'dja-dark-palette';\n\n    var mode = localStorage.getItem(STORAGE_MODE) || 'light';\n    var savedPalette = localStorage.getItem(STORAGE_PALETTE) || 'mono';\n    var savedDarkPalette = localStorage.getItem(STORAGE_DARK_PALETTE) || 'mono';\n    var root = document.documentElement;\n\n    var palette = mode === 'light' ? 'mono' : savedDarkPalette;\n\n    if (savedPalette \u0026\u0026 savedPalette !== 'mono') {\n      savedDarkPalette = savedPalette;\n      localStorage.setItem(STORAGE_DARK_PALETTE, savedDarkPalette);\n      if (mode === 'dark') {\n        palette = savedDarkPalette;\n      }\n    }\n\n    var PALETTES = {\n      'volt-green': {\n        light: {\n          background: '0 0% 100%',\n          foreground: '0 0% 5%',\n          card: '0 0% 98%',\n          cardForeground: '0 0% 5%',\n          popover: '0 0% 100%',\n          popoverForeground: '0 0% 5%',\n          sidebar: '0 0% 96%',\n          sidebarBorder: '0 0% 88%',\n          primary: '0 0% 6%',\n          primaryForeground: '0 0% 100%',\n          secondary: '0 0% 92%',\n          secondaryForeground: '0 0% 5%',\n          muted: '0 0% 94%',\n          mutedForeground: '0 0% 44%',\n          accent: '0 0% 92%',\n          accentForeground: '0 0% 5%',\n          destructive: '0 70% 45%',\n          destructiveForeground: '0 0% 100%',\n          border: '0 0% 88%',\n          input: '0 0% 94%',\n          ring: '0 0% 20%',\n          radius: '0.625rem'\n        },\n        dark: {\n          background: '0 0% 10%',\n          foreground: '0 0% 95%',\n          card: '0 0% 12%',\n          cardForeground: '0 0% 95%',\n          popover: '0 0% 11%',\n          popoverForeground: '0 0% 95%',\n          sidebar: '0 0% 8%',\n          sidebarBorder: '0 0% 17%',\n          primary: '71 100% 49%',\n          primaryForeground: '0 0% 6%',\n          secondary: '0 0% 16%',\n          secondaryForeground: '0 0% 90%',\n          muted: '0 0% 15%',\n          mutedForeground: '0 0% 55%',\n          accent: '0 0% 17%',\n          accentForeground: '0 0% 95%',\n          destructive: '0 80% 55%',\n          destructiveForeground: '0 0% 100%',\n          border: '0 0% 18%',\n          input: '0 0% 14%',\n          ring: '71 100% 49%',\n          radius: '0.625rem'\n        }\n      },\n      'volt-red': {\n        light: {\n          background: '0 0% 100%',\n          foreground: '0 0% 5%',\n          card: '0 0% 98%',\n          cardForeground: '0 0% 5%',\n          popover: '0 0% 100%',\n          popoverForeground: '0 0% 5%',\n          sidebar: '0 0% 96%',\n          sidebarBorder: '0 0% 88%',\n          primary: '0 0% 6%',\n          primaryForeground: '0 0% 100%',\n          secondary: '0 0% 92%',\n          secondaryForeground: '0 0% 5%',\n          muted: '0 0% 94%',\n          mutedForeground: '0 0% 44%',\n          accent: '0 0% 92%',\n          accentForeground: '0 0% 5%',\n          destructive: '0 70% 45%',\n          destructiveForeground: '0 0% 100%',\n          border: '0 0% 88%',\n          input: '0 0% 94%',\n          ring: '0 0% 20%',\n          radius: '0.625rem'\n        },\n        dark: {\n          background: '0 0% 10%',\n          foreground: '0 0% 95%',\n          card: '0 0% 12%',\n          cardForeground: '0 0% 95%',\n          popover: '0 0% 11%',\n          popoverForeground: '0 0% 95%',\n          sidebar: '0 0% 8%',\n          sidebarBorder: '0 0% 17%',\n          primary: '352 100% 52%',\n          primaryForeground: '0 0% 100%',\n          secondary: '0 0% 16%',\n          secondaryForeground: '0 0% 90%',\n          muted: '0 0% 15%',\n          mutedForeground: '0 0% 55%',\n          accent: '0 0% 17%',\n          accentForeground: '0 0% 95%',\n          destructive: '0 80% 55%',\n          destructiveForeground: '0 0% 100%',\n          border: '0 0% 18%',\n          input: '0 0% 14%',\n          ring: '352 100% 52%',\n          radius: '0.625rem'\n        }\n      },\n      'volt-blue': {\n        light: {\n          background: '0 0% 100%',\n          foreground: '0 0% 5%',\n          card: '0 0% 98%',\n          cardForeground: '0 0% 5%',\n          popover: '0 0% 100%',\n          popoverForeground: '0 0% 5%',\n          sidebar: '0 0% 96%',\n          sidebarBorder: '0 0% 88%',\n          primary: '0 0% 6%',\n          primaryForeground: '0 0% 100%',\n          secondary: '0 0% 92%',\n          secondaryForeground: '0 0% 5%',\n          muted: '0 0% 94%',\n          mutedForeground: '0 0% 44%',\n          accent: '0 0% 92%',\n          accentForeground: '0 0% 5%',\n          destructive: '0 70% 45%',\n          destructiveForeground: '0 0% 100%',\n          border: '0 0% 88%',\n          input: '0 0% 94%',\n          ring: '0 0% 20%',\n          radius: '0.625rem',\n          chart1: '0 0% 12%',\n          chart2: '0 0% 24%',\n          chart3: '0 0% 36%',\n          chart4: '0 0% 52%',\n          chart5: '0 0% 68%'\n        },\n        dark: {\n          background: '0 0% 10%',\n          foreground: '0 0% 95%',\n          card: '0 0% 12%',\n          cardForeground: '0 0% 95%',\n          popover: '0 0% 11%',\n          popoverForeground: '0 0% 95%',\n          sidebar: '0 0% 8%',\n          sidebarBorder: '0 0% 17%',\n          primary: '217 91% 55%',\n          primaryForeground: '0 0% 100%',\n          secondary: '217 30% 15%',\n          secondaryForeground: '210 40% 90%',\n          muted: '220 25% 14%',\n          mutedForeground: '215 25% 58%',\n          accent: '217 30% 16%',\n          accentForeground: '210 40% 95%',\n          destructive: '0 80% 60%',\n          destructiveForeground: '0 0% 100%',\n          border: '220 30% 16%',\n          input: '220 30% 14%',\n          ring: '217 91% 55%',\n          radius: '0.625rem',\n          chart1: '217 80% 60%',\n          chart2: '172 66% 50%',\n          chart3: '43 96% 56%',\n          chart4: '142 76% 46%',\n          chart5: '25 95% 60%'\n        }\n      },\n      'mono': {\n        light: {\n          background: '0 0% 100%',\n          foreground: '0 0% 5%',\n          card: '0 0% 98%',\n          cardForeground: '0 0% 5%',\n          popover: '0 0% 100%',\n          popoverForeground: '0 0% 5%',\n          sidebar: '0 0% 96%',\n          sidebarBorder: '0 0% 88%',\n          primary: '0 0% 6%',\n          primaryForeground: '0 0% 100%',\n          secondary: '0 0% 92%',\n          secondaryForeground: '0 0% 5%',\n          muted: '0 0% 94%',\n          mutedForeground: '0 0% 44%',\n          accent: '0 0% 92%',\n          accentForeground: '0 0% 5%',\n          destructive: '0 70% 45%',\n          destructiveForeground: '0 0% 100%',\n          border: '0 0% 88%',\n          input: '0 0% 94%',\n          ring: '0 0% 20%',\n          radius: '0.625rem',\n          chart1: '0 0% 12%',\n          chart2: '0 0% 24%',\n          chart3: '0 0% 36%',\n          chart4: '0 0% 52%',\n          chart5: '0 0% 68%'\n        },\n        dark: {\n          background: '0 0% 4%',\n          foreground: '0 0% 95%',\n          card: '0 0% 7%',\n          cardForeground: '0 0% 95%',\n          popover: '0 0% 6%',\n          popoverForeground: '0 0% 95%',\n          sidebar: '0 0% 5%',\n          sidebarBorder: '0 0% 12%',\n          primary: '0 0% 83%',\n          primaryForeground: '0 0% 5%',\n          secondary: '0 0% 13%',\n          secondaryForeground: '0 0% 90%',\n          muted: '0 0% 12%',\n          mutedForeground: '0 0% 52%',\n          accent: '0 0% 14%',\n          accentForeground: '0 0% 95%',\n          destructive: '0 70% 55%',\n          destructiveForeground: '0 0% 100%',\n          border: '0 0% 14%',\n          input: '0 0% 12%',\n          ring: '0 0% 70%',\n          radius: '0.625rem',\n          chart1: '0 0% 83%',\n          chart2: '0 0% 68%',\n          chart3: '0 0% 52%',\n          chart4: '0 0% 36%',\n          chart5: '0 0% 24%'\n        }\n      }\n    };\n\n    var paletteSet = PALETTES[palette] || PALETTES['mono'];\n    var tokens = paletteSet[mode] || paletteSet.light;\n\n    root.setAttribute('data-palette', palette);\n    root.setAttribute('data-mode', mode);\n\n    Object.keys(tokens).forEach(function (key) {\n      var cssVar = '--' + key.replace(/[A-Z]/g, function (m) {\n        return '-' + m.toLowerCase();\n      });\n      root.style.setProperty(cssVar, tokens[key]);\n    });\n  } catch (e) {}\n})();\n"])</script><script>self.__next_f.push([1,"3:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/28fb6ab89bbaa364.css\",\"precedence\":\"next\"}]],[\"$\",\"$L4\",null,{\"buildId\":\"sTrNqFZoZggmM7UqkCDa4\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/pipeline/interested\",\"initialTree\":[\"\",{\"children\":[\"pipeline\",{\"children\":[\"interested\",{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[false,\"$L5\"],\"globalErrorComponent\":\"$6\",\"children\":[null,[\"$\",\"html\",null,{\"lang\":\"en\",\"data-palette\":\"mono\",\"data-mode\":\"light\",\"suppressHydrationWarning\":true,\"children\":[[\"$\",\"head\",null,{\"children\":[\"$\",\"script\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"$7\"}}]}],[\"$\",\"body\",null,{\"className\":\"__className_f367f3\",\"children\":[\"$\",\"$L8\",null,{\"children\":[\"$\",\"$L9\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$La\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"childProp\":{\"current\":[\"$\",\"$L9\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"pipeline\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$La\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$\",\"$L9\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"pipeline\",\"children\",\"interested\",\"children\"],\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"template\":[\"$\",\"$La\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"childProp\":{\"current\":[\"$Lb\",\"$Lc\",null],\"segment\":\"__PAGE__\"},\"styles\":[]}],\"segment\":\"interested\"},\"styles\":[]}],\"segment\":\"pipeline\"},\"styles\":[]}]}]}]]}],null]}]]\n"])</script><script>self.__next_f.push([1,"5:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"Dream Job App\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"From job search to hired — easy, fast, professional.\"}],[\"$\",\"meta\",\"3\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"4\",{\"name\":\"next-size-adjust\"}]]\nb:null\n"])</script><script>self.__next_f.push([1,"d:I{\"id\":5332,\"chunks\":[\"589:static/chunks/589-b71942607fd7f0dc.js\",\"396:static/chunks/396-08685c64ba0c7e6e.js\",\"713:static/chunks/713-0dd3b4d80fac1272.js\",\"630:static/chunks/630-69085de49621cf6d.js\",\"802:static/chunks/802-9c1f9f2d62e8ce24.js\",\"332:static/chunks/332-85912ceb4107a7f7.js\",\"323:static/chunks/app/pipeline/interested/page-c79eec9d8c93939a.js\"],\"name\":\"MainLayout\",\"async\":false}\ne:I{\"id\":4724,\"chunks\":[\"589:static/chunks/589-b71942607fd7f0dc.js\",\"396:static/chunks/396-08685c64ba0c7e6e.js\",\"713:st"])</script><script>self.__next_f.push([1,"atic/chunks/713-0dd3b4d80fac1272.js\",\"630:static/chunks/630-69085de49621cf6d.js\",\"802:static/chunks/802-9c1f9f2d62e8ce24.js\",\"332:static/chunks/332-85912ceb4107a7f7.js\",\"323:static/chunks/app/pipeline/interested/page-c79eec9d8c93939a.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"c:[\"$\",\"$Ld\",null,{\"children\":[\"$\",\"div\",null,{\"className\":\"page-container space-y-6\",\"children\":[[\"$\",\"div\",null,{\"className\":\"space-y-4\",\"children\":[[\"$\",\"$Le\",null,{\"href\":\"/dashboard\",\"className\":\"inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground\",\"children\":[[\"$\",\"svg\",null,{\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":24,\"height\":24,\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"strokeWidth\":2,\"strokeLinecap\":\"round\",\"strokeLinejoin\":\"round\",\"className\":\"lucide lucide-arrow-left h-4 w-4\",\"children\":[[\"$\",\"path\",\"1l729n\",{\"d\":\"m12 19-7-7 7-7\"}],[\"$\",\"path\",\"x3x0zl\",{\"d\":\"M19 12H5\"}],\"$undefined\"]}],\"Back to Dashboard\"]}],[\"$\",\"div\",null,{\"className\":\"flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"mb-1 flex items-center gap-2\",\"children\":[[\"$\",\"svg\",null,{\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":24,\"height\":24,\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"strokeWidth\":2,\"strokeLinecap\":\"round\",\"strokeLinejoin\":\"round\",\"className\":\"lucide lucide-briefcase-business h-5 w-5 text-primary\",\"children\":[[\"$\",\"path\",\"1mp3jc\",{\"d\":\"M12 12h.01\"}],[\"$\",\"path\",\"1ksdt3\",{\"d\":\"M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2\"}],[\"$\",\"path\",\"12hx5q\",{\"d\":\"M22 13a18.15 18.15 0 0 1-20 0\"}],[\"$\",\"rect\",\"i6l2r4\",{\"width\":\"20\",\"height\":\"14\",\"x\":\"2\",\"y\":\"6\",\"rx\":\"2\"}],\"$undefined\"]}],[\"$\",\"h1\",null,{\"className\":\"text-2xl font-bold text-foreground\",\"children\":\"Interested\"}]]}],[\"$\",\"p\",null,{\"className\":\"text-sm text-muted-foreground\",\"children\":\"Listings you added and have not started working yet.\"}]]}],[\"$\",\"div\",null,{\"className\":\"inline-flex w-fit items-center rounded-full border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground\",\"children\":[0,\" jobs\"]}]]}]]}],[\"$\",\"section\",null,{\"className\":\"rounded-2xl border border-dashed border-border bg-card/60 p-8 text-center\",\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-lg font-semibold text-foreground\",\"children\":\"No jobs here yet\"}],[\"$\",\"p\",null,{\"className\":\"mt-2 text-sm text-muted-foreground\",\"children\":\"Listings you added and have not started working yet.\"}],[\"$\",\"div\",null,{\"className\":\"mt-5 flex justify-center\",\"children\":[\"$\",\"$Le\",null,{\"href\":\"/jobs/new\",\"className\":\"inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90\",\"children\":[[\"$\",\"svg\",null,{\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":24,\"height\":24,\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"strokeWidth\":2,\"strokeLinecap\":\"round\",\"strokeLinejoin\":\"round\",\"className\":\"lucide lucide-plus h-4 w-4\",\"children\":[[\"$\",\"path\",\"1ays0h\",{\"d\":\"M5 12h14\"}],[\"$\",\"path\",\"s699le\",{\"d\":\"M12 5v14\"}],\"$undefined\"]}],\"It's a Ghost Town Around Here...Add a New Job to Get Started\"]}]}]]}]]}]}]\n"])</script></body></html>

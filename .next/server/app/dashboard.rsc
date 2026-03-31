@@ -1,0 +1,271 @@
+1:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+2:HL["/_next/static/css/28fb6ab89bbaa364.css","style"]
+0:["sTrNqFZoZggmM7UqkCDa4",[[["",{"children":["dashboard",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],"$L3",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/28fb6ab89bbaa364.css","precedence":"next"}]],"$L4"]]]]
+6:I{"id":3654,"chunks":["185:static/chunks/app/layout-933eee3c22b1facf.js"],"name":"ThemeProvider","async":false}
+7:I{"id":1443,"chunks":["272:static/chunks/webpack-478c5f80cad8caa9.js","971:static/chunks/fd9d1056-010fe255df1ad620.js","864:static/chunks/864-72f1e5d29f227d58.js"],"name":"","async":false}
+8:I{"id":8639,"chunks":["272:static/chunks/webpack-478c5f80cad8caa9.js","971:static/chunks/fd9d1056-010fe255df1ad620.js","864:static/chunks/864-72f1e5d29f227d58.js"],"name":"","async":false}
+4:[["$","meta","0",{"charSet":"utf-8"}],["$","title","1",{"children":"Dream Job App"}],["$","meta","2",{"name":"description","content":"From job search to hired — easy, fast, professional."}],["$","meta","3",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","4",{"name":"next-size-adjust"}]]
+5:T201e,
+(function () {
+  try {
+    var STORAGE_PALETTE = 'dja-palette';
+    var STORAGE_MODE = 'dja-mode';
+    var STORAGE_DARK_PALETTE = 'dja-dark-palette';
+
+    var mode = localStorage.getItem(STORAGE_MODE) || 'light';
+    var savedPalette = localStorage.getItem(STORAGE_PALETTE) || 'mono';
+    var savedDarkPalette = localStorage.getItem(STORAGE_DARK_PALETTE) || 'mono';
+    var root = document.documentElement;
+
+    var palette = mode === 'light' ? 'mono' : savedDarkPalette;
+
+    if (savedPalette && savedPalette !== 'mono') {
+      savedDarkPalette = savedPalette;
+      localStorage.setItem(STORAGE_DARK_PALETTE, savedDarkPalette);
+      if (mode === 'dark') {
+        palette = savedDarkPalette;
+      }
+    }
+
+    var PALETTES = {
+      'volt-green': {
+        light: {
+          background: '0 0% 100%',
+          foreground: '0 0% 5%',
+          card: '0 0% 98%',
+          cardForeground: '0 0% 5%',
+          popover: '0 0% 100%',
+          popoverForeground: '0 0% 5%',
+          sidebar: '0 0% 96%',
+          sidebarBorder: '0 0% 88%',
+          primary: '0 0% 6%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 92%',
+          secondaryForeground: '0 0% 5%',
+          muted: '0 0% 94%',
+          mutedForeground: '0 0% 44%',
+          accent: '0 0% 92%',
+          accentForeground: '0 0% 5%',
+          destructive: '0 70% 45%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 88%',
+          input: '0 0% 94%',
+          ring: '0 0% 20%',
+          radius: '0.625rem'
+        },
+        dark: {
+          background: '0 0% 10%',
+          foreground: '0 0% 95%',
+          card: '0 0% 12%',
+          cardForeground: '0 0% 95%',
+          popover: '0 0% 11%',
+          popoverForeground: '0 0% 95%',
+          sidebar: '0 0% 8%',
+          sidebarBorder: '0 0% 17%',
+          primary: '71 100% 49%',
+          primaryForeground: '0 0% 6%',
+          secondary: '0 0% 16%',
+          secondaryForeground: '0 0% 90%',
+          muted: '0 0% 15%',
+          mutedForeground: '0 0% 55%',
+          accent: '0 0% 17%',
+          accentForeground: '0 0% 95%',
+          destructive: '0 80% 55%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 18%',
+          input: '0 0% 14%',
+          ring: '71 100% 49%',
+          radius: '0.625rem'
+        }
+      },
+      'volt-red': {
+        light: {
+          background: '0 0% 100%',
+          foreground: '0 0% 5%',
+          card: '0 0% 98%',
+          cardForeground: '0 0% 5%',
+          popover: '0 0% 100%',
+          popoverForeground: '0 0% 5%',
+          sidebar: '0 0% 96%',
+          sidebarBorder: '0 0% 88%',
+          primary: '0 0% 6%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 92%',
+          secondaryForeground: '0 0% 5%',
+          muted: '0 0% 94%',
+          mutedForeground: '0 0% 44%',
+          accent: '0 0% 92%',
+          accentForeground: '0 0% 5%',
+          destructive: '0 70% 45%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 88%',
+          input: '0 0% 94%',
+          ring: '0 0% 20%',
+          radius: '0.625rem'
+        },
+        dark: {
+          background: '0 0% 10%',
+          foreground: '0 0% 95%',
+          card: '0 0% 12%',
+          cardForeground: '0 0% 95%',
+          popover: '0 0% 11%',
+          popoverForeground: '0 0% 95%',
+          sidebar: '0 0% 8%',
+          sidebarBorder: '0 0% 17%',
+          primary: '352 100% 52%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 16%',
+          secondaryForeground: '0 0% 90%',
+          muted: '0 0% 15%',
+          mutedForeground: '0 0% 55%',
+          accent: '0 0% 17%',
+          accentForeground: '0 0% 95%',
+          destructive: '0 80% 55%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 18%',
+          input: '0 0% 14%',
+          ring: '352 100% 52%',
+          radius: '0.625rem'
+        }
+      },
+      'volt-blue': {
+        light: {
+          background: '0 0% 100%',
+          foreground: '0 0% 5%',
+          card: '0 0% 98%',
+          cardForeground: '0 0% 5%',
+          popover: '0 0% 100%',
+          popoverForeground: '0 0% 5%',
+          sidebar: '0 0% 96%',
+          sidebarBorder: '0 0% 88%',
+          primary: '0 0% 6%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 92%',
+          secondaryForeground: '0 0% 5%',
+          muted: '0 0% 94%',
+          mutedForeground: '0 0% 44%',
+          accent: '0 0% 92%',
+          accentForeground: '0 0% 5%',
+          destructive: '0 70% 45%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 88%',
+          input: '0 0% 94%',
+          ring: '0 0% 20%',
+          radius: '0.625rem',
+          chart1: '0 0% 12%',
+          chart2: '0 0% 24%',
+          chart3: '0 0% 36%',
+          chart4: '0 0% 52%',
+          chart5: '0 0% 68%'
+        },
+        dark: {
+          background: '0 0% 10%',
+          foreground: '0 0% 95%',
+          card: '0 0% 12%',
+          cardForeground: '0 0% 95%',
+          popover: '0 0% 11%',
+          popoverForeground: '0 0% 95%',
+          sidebar: '0 0% 8%',
+          sidebarBorder: '0 0% 17%',
+          primary: '217 91% 55%',
+          primaryForeground: '0 0% 100%',
+          secondary: '217 30% 15%',
+          secondaryForeground: '210 40% 90%',
+          muted: '220 25% 14%',
+          mutedForeground: '215 25% 58%',
+          accent: '217 30% 16%',
+          accentForeground: '210 40% 95%',
+          destructive: '0 80% 60%',
+          destructiveForeground: '0 0% 100%',
+          border: '220 30% 16%',
+          input: '220 30% 14%',
+          ring: '217 91% 55%',
+          radius: '0.625rem',
+          chart1: '217 80% 60%',
+          chart2: '172 66% 50%',
+          chart3: '43 96% 56%',
+          chart4: '142 76% 46%',
+          chart5: '25 95% 60%'
+        }
+      },
+      'mono': {
+        light: {
+          background: '0 0% 100%',
+          foreground: '0 0% 5%',
+          card: '0 0% 98%',
+          cardForeground: '0 0% 5%',
+          popover: '0 0% 100%',
+          popoverForeground: '0 0% 5%',
+          sidebar: '0 0% 96%',
+          sidebarBorder: '0 0% 88%',
+          primary: '0 0% 6%',
+          primaryForeground: '0 0% 100%',
+          secondary: '0 0% 92%',
+          secondaryForeground: '0 0% 5%',
+          muted: '0 0% 94%',
+          mutedForeground: '0 0% 44%',
+          accent: '0 0% 92%',
+          accentForeground: '0 0% 5%',
+          destructive: '0 70% 45%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 88%',
+          input: '0 0% 94%',
+          ring: '0 0% 20%',
+          radius: '0.625rem',
+          chart1: '0 0% 12%',
+          chart2: '0 0% 24%',
+          chart3: '0 0% 36%',
+          chart4: '0 0% 52%',
+          chart5: '0 0% 68%'
+        },
+        dark: {
+          background: '0 0% 4%',
+          foreground: '0 0% 95%',
+          card: '0 0% 7%',
+          cardForeground: '0 0% 95%',
+          popover: '0 0% 6%',
+          popoverForeground: '0 0% 95%',
+          sidebar: '0 0% 5%',
+          sidebarBorder: '0 0% 12%',
+          primary: '0 0% 83%',
+          primaryForeground: '0 0% 5%',
+          secondary: '0 0% 13%',
+          secondaryForeground: '0 0% 90%',
+          muted: '0 0% 12%',
+          mutedForeground: '0 0% 52%',
+          accent: '0 0% 14%',
+          accentForeground: '0 0% 95%',
+          destructive: '0 70% 55%',
+          destructiveForeground: '0 0% 100%',
+          border: '0 0% 14%',
+          input: '0 0% 12%',
+          ring: '0 0% 70%',
+          radius: '0.625rem',
+          chart1: '0 0% 83%',
+          chart2: '0 0% 68%',
+          chart3: '0 0% 52%',
+          chart4: '0 0% 36%',
+          chart5: '0 0% 24%'
+        }
+      }
+    };
+
+    var paletteSet = PALETTES[palette] || PALETTES['mono'];
+    var tokens = paletteSet[mode] || paletteSet.light;
+
+    root.setAttribute('data-palette', palette);
+    root.setAttribute('data-mode', mode);
+
+    Object.keys(tokens).forEach(function (key) {
+      var cssVar = '--' + key.replace(/[A-Z]/g, function (m) {
+        return '-' + m.toLowerCase();
+      });
+      root.style.setProperty(cssVar, tokens[key]);
+    });
+  } catch (e) {}
+})();
+3:[null,["$","html",null,{"lang":"en","data-palette":"mono","data-mode":"light","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$5"}}]}],["$","body",null,{"className":"__className_f367f3","children":["$","$L6",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","segmentPath":["children"],"loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[],"childProp":{"current":["$","$L7",null,{"parallelRouterKey":"children","segmentPath":["children","dashboard","children"],"loading":"$undefined","loadingStyles":"$undefined","hasLoading":false,"error":"$undefined","errorStyles":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined","childProp":{"current":["$L9","$La",null],"segment":"__PAGE__"},"styles":[]}],"segment":"dashboard"},"styles":[]}]}]}]]}],null]
+9:null
+b:I{"id":5332,"chunks":["589:static/chunks/589-b71942607fd7f0dc.js","396:static/chunks/396-08685c64ba0c7e6e.js","713:static/chunks/713-0dd3b4d80fac1272.js","630:static/chunks/630-69085de49621cf6d.js","802:static/chunks/802-9c1f9f2d62e8ce24.js","332:static/chunks/332-85912ceb4107a7f7.js","702:static/chunks/app/dashboard/page-65740be6f6bf6221.js"],"name":"MainLayout","async":false}
+c:I{"id":4724,"chunks":["589:static/chunks/589-b71942607fd7f0dc.js","396:static/chunks/396-08685c64ba0c7e6e.js","713:static/chunks/713-0dd3b4d80fac1272.js","630:static/chunks/630-69085de49621cf6d.js","802:static/chunks/802-9c1f9f2d62e8ce24.js","332:static/chunks/332-85912ceb4107a7f7.js","702:static/chunks/app/dashboard/page-65740be6f6bf6221.js"],"name":"","async":false}
+a:["$","$Lb",null,{"currentJob":null,"children":["$","div",null,{"className":"page-container space-y-8","children":[["$","div",null,{"className":"flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between","children":[["$","div",null,{"children":[["$","div",null,{"className":"mb-1 flex items-center gap-2","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-zap h-5 w-5 text-primary","children":[["$","path","1xq2db",{"d":"M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"}],"$undefined"]}],["$","h1",null,{"className":"text-2xl font-bold text-foreground","children":"Jobs"}]]}],["$","p",null,{"className":"text-sm text-muted-foreground","children":"Stay focused, complete the packet, and submit one job at a time."}]]}],["$","$Lc",null,{"href":"/jobs/new","className":"flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:-translate-y-0.5 hover:bg-primary/90 sm:w-auto","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-plus h-4 w-4","children":[["$","path","1ays0h",{"d":"M5 12h14"}],["$","path","s699le",{"d":"M12 5v14"}],"$undefined"]}],"Add Job"]}]]}],["$","div",null,{"className":"grid grid-cols-2 gap-3 sm:grid-cols-4","children":[["$","div","Preparing",{"className":"rounded-xl border border-border bg-card px-4 py-3 shadow-[0_6px_18px_hsl(0_0%_0%/0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl","children":[["$","div",null,{"className":"mb-1.5 flex items-center gap-2","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-file-check h-4 w-4 text-navy-400","children":[["$","path","1rqfz7",{"d":"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"}],["$","path","tnqrlb",{"d":"M14 2v4a2 2 0 0 0 2 2h4"}],["$","path","1grp1n",{"d":"m9 15 2 2 4-4"}],"$undefined"]}],["$","span",null,{"className":"text-xs text-muted-foreground","children":"Preparing"}]]}],["$","p",null,{"className":"text-2xl font-bold tabular-nums text-foreground","children":0}]]}],["$","div","Applied",{"className":"rounded-xl border border-border bg-card px-4 py-3 shadow-[0_6px_18px_hsl(0_0%_0%/0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl","children":[["$","div",null,{"className":"mb-1.5 flex items-center gap-2","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-send h-4 w-4 text-violet-400","children":[["$","path","1ffxy3",{"d":"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"}],["$","path","12cjpa",{"d":"m21.854 2.147-10.94 10.939"}],"$undefined"]}],["$","span",null,{"className":"text-xs text-muted-foreground","children":"Applied"}]]}],["$","p",null,{"className":"text-2xl font-bold tabular-nums text-foreground","children":0}]]}],["$","div","Interviews",{"className":"rounded-xl border border-border bg-card px-4 py-3 shadow-[0_6px_18px_hsl(0_0%_0%/0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl","children":[["$","div",null,{"className":"mb-1.5 flex items-center gap-2","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-messages-square h-4 w-4 text-emerald-400","children":[["$","path","p1xzt8",{"d":"M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"}],["$","path","1cx29u",{"d":"M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"}],"$undefined"]}],["$","span",null,{"className":"text-xs text-muted-foreground","children":"Interviews"}]]}],["$","p",null,{"className":"text-2xl font-bold tabular-nums text-foreground","children":0}]]}],["$","div","Ghosted",{"className":"rounded-xl border border-border bg-card px-4 py-3 shadow-[0_6px_18px_hsl(0_0%_0%/0.08)] transition-all duration-200 hover:-translate-y-1 hover:shadow-xl","children":[["$","div",null,{"className":"mb-1.5 flex items-center gap-2","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-ghost h-4 w-4 text-zinc-300","children":[["$","path","qbtxuw",{"d":"M9 10h.01"}],["$","path","1qmjsl",{"d":"M15 10h.01"}],["$","path","uwwb07",{"d":"M12 2a8 8 0 0 0-8 8v12l3-3 2.5 2.5L12 19l2.5 2.5L17 19l3 3V10a8 8 0 0 0-8-8z"}],"$undefined"]}],["$","span",null,{"className":"text-xs text-muted-foreground","children":"Ghosted"}]]}],["$","p",null,{"className":"text-2xl font-bold tabular-nums text-foreground","children":0}]]}]]}],["$","section",null,{"className":"rounded-2xl border border-dashed border-border bg-card/60 p-6 text-center","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-trophy mx-auto mb-3 h-8 w-8 text-primary/70","children":[["$","path","17hqa7",{"d":"M6 9H4.5a2.5 2.5 0 0 1 0-5H6"}],["$","path","lmptdp",{"d":"M18 9h1.5a2.5 2.5 0 0 0 0-5H18"}],["$","path","57wxv0",{"d":"M4 22h16"}],["$","path","1nw9bq",{"d":"M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"}],["$","path","1np0yb",{"d":"M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"}],["$","path","u46fv3",{"d":"M18 2H6v7a6 6 0 0 0 12 0V2Z"}],"$undefined"]}],["$","h2",null,{"className":"text-lg font-semibold text-foreground","children":"No current packet in progress"}],["$","p",null,{"className":"mt-2 text-sm text-muted-foreground","children":"Start the next best job from your selected list and keep momentum moving forward."}]]}],["$","section",null,{"className":"space-y-4","children":[["$","div",null,{"className":"flex items-center justify-between gap-3","children":[["$","h2",null,{"className":"text-base font-semibold text-foreground","children":"Pipeline"}],["$","span",null,{"className":"text-xs text-muted-foreground","children":[0," jobs"]}]]}],["$","div",null,{"className":"grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3","children":[]}]]}],["$","section",null,{"className":"space-y-4","children":[["$","div",null,{"className":"flex items-center justify-between gap-3","children":[["$","h2",null,{"className":"text-base font-semibold text-foreground","children":"Selected"}],["$","span",null,{"className":"text-xs text-muted-foreground","children":[0," jobs"]}]]}],["$","div",null,{"className":"grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3","children":[]}]]}],["$","section",null,{"className":"space-y-4","children":[["$","div",null,{"className":"flex items-center justify-between gap-3","children":[["$","h2",null,{"className":"text-base font-semibold text-foreground","children":"Recommended"}],["$","span",null,{"className":"text-xs text-muted-foreground","children":[0," jobs"]}]]}],["$","div",null,{"className":"grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3","children":[]}]]}]]}]}]
