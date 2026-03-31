@@ -32,6 +32,46 @@ function unique(arr: string[]) {
   return Array.from(new Set(arr.filter(Boolean)));
 }
 
+export const RESEARCH_SEGMENTS = [
+  {
+    key: 'job',
+    label: 'Job',
+    icon: 'briefcase',
+    fields: [
+      'keywords',
+      'required_skills',
+      'required_technologies',
+      'required_tools',
+      'required_experience',
+      'required_education',
+      'guidance',
+    ],
+  },
+  {
+    key: 'company',
+    label: 'Company',
+    icon: 'building',
+    fields: [
+      'culture',
+      'recent_news',
+      'news_links',
+      'social_urls',
+    ],
+  },
+  {
+    key: 'team',
+    label: 'Team',
+    icon: 'users',
+    fields: [
+      'resume_signals',
+      'cover_letter_signals',
+      'org_map',
+      'linkedin_urls',
+      'network_connections',
+    ],
+  },
+] as const;
+
 export function parseUnifiedResearch(raw: string) {
   const sections = { job: '', company: '', team: '' } as Record<string, string>;
   const regex = /#\s*(Job|Company|Team)\s*([\s\S]*?)(?=\n#\s*(Job|Company|Team)\b|$)/gi;
