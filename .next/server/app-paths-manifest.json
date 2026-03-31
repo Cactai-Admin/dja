@@ -2,5 +2,6 @@
   "/dashboard/page": "app/dashboard/page.js",
   "/settings/page": "app/settings/page.js",
   "/jobs/new/page": "app/jobs/new/page.js",
-  "/pipeline/applied/page": "app/pipeline/applied/page.js"
+  "/pipeline/applied/page": "app/pipeline/applied/page.js",
+  "/api/jobs/route": "app/api/jobs/route.js"
 }
