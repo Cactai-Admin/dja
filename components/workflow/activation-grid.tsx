@@ -1,68 +1,139 @@
 'use client';
+
 import { useEffect, useMemo, useState } from 'react';
-import { Briefcase, Building2, Users } from 'lucide-react';
-import { RESEARCH_SEGMENTS } from '@/lib/research-workflow';
+import { BriefcaseBusiness, Building2, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { RESEARCH_SEGMENTS } from '@/lib/research-workflow';
 
-const ICONS: Record<string, any> = { Briefcase, Building2, Users };
+type ParsedSegmentData = Record<string, unknown>;
+type ParsedShape = {
+  job?: ParsedSegmentData;
+  company?: ParsedSegmentData;
+  team?: ParsedSegmentData;
+};
 
-export function ActivationGrid({ parsed }: { parsed: any }) {
-  const activeKeys = useMemo(() => {
+interface ActivationGridProps {
+  parsed: ParsedShape;
+}
+
+const ICONS = {
+  briefcase: BriefcaseBusiness,
+  building: Building2,
+  users: Users,
+} as const;
+
+function hasData(value: unknown) {
+  if (Array.isArray(value)) return value.length > 0;
+  if (typeof value === 'string') return value.trim().length > 0;
+  if (value && typeof value === 'object') return Object.keys(value as object).length > 0;
+  return Boolean(value);
+}
+
+function formatLabel(value: string) {
+  return value.replace(/_/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase());
+}
+
+export function ActivationGrid({ parsed }: ActivationGridProps) {
+  const [activeKeys, setActiveKeys] = useState<string[]>([]);
+
+  const orderedKeys = useMemo(() => {
     const keys: string[] = [];
+
     RESEARCH_SEGMENTS.forEach((segment) => {
       const segmentData = parsed?.[segment.key] || {};
-      const hasSegmentData = segment.subcategories.some((sub) => (segmentData[sub.key] || []).length > 0);
+      const hasSegmentData = segment.fields.some((field) =>
+        hasData((segmentData as ParsedSegmentData)[field])
+      );
+
       if (hasSegmentData) keys.push(segment.key);
-      segment.subcategories.forEach((sub) => {
-        if ((segmentData[sub.key] || []).length > 0) keys.push(`${segment.key}.${sub.key}`);
+
+      segment.fields.forEach((field) => {
+        if (hasData((segmentData as ParsedSegmentData)[field])) {
+          keys.push(`${segment.key}.${field}`);
+        }
       });
     });
+
     return keys;
   }, [parsed]);
 
-  const [lit, setLit] = useState<string[]>([]);
-
   useEffect(() => {
-    setLit([]);
-    activeKeys.forEach((key, index) => {
-      const timeout = window.setTimeout(() => {
-        setLit((prev) => (prev.includes(key) ? prev : [...prev, key]));
+    setActiveKeys([]);
+
+    orderedKeys.forEach((key, index) => {
+      const timer = setTimeout(() => {
+        setActiveKeys((prev) => (prev.includes(key) ? prev : [...prev, key]));
       }, index * 120);
-      return () => window.clearTimeout(timeout);
+
+      return () => clearTimeout(timer);
     });
-  }, [activeKeys]);
+  }, [orderedKeys]);
 
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {RESEARCH_SEGMENTS.map((segment) => {
         const Icon = ICONS[segment.icon];
-        const segmentLit = lit.includes(segment.key);
+        const segmentIsActive = activeKeys.includes(segment.key);
+
         return (
-          <div key={segment.key} className="rounded-2xl border border-border bg-card p-4">
-            <div className={cn('mb-4 flex items-center gap-3 transition-all', segmentLit ? 'text-primary drop-shadow-[0_0_10px_rgba(59,130,246,0.55)]' : 'text-muted-foreground')}>
-              <div className={cn('flex h-10 w-10 items-center justify-center rounded-xl border', segmentLit ? 'border-primary/40 bg-primary/10' : 'border-border bg-black/20')}>
-                <Icon className="h-4 w-4" />
+          <div
+            key={segment.key}
+            className={cn(
+              'rounded-2xl border bg-card p-4 transition-all duration-300',
+              segmentIsActive
+                ? 'border-primary/40 shadow-lg shadow-primary/10'
+                : 'border-border'
+            )}
+          >
+            <div className="mb-4 flex items-center gap-3">
+              <div
+                className={cn(
+                  'flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300',
+                  segmentIsActive
+                    ? 'border-primary/40 bg-primary/10 text-primary shadow-md shadow-primary/20'
+                    : 'border-border bg-black/20 text-muted-foreground'
+                )}
+              >
+                <Icon className="h-5 w-5" />
               </div>
+
               <div>
-                <p className="text-sm font-semibold">{segment.label}</p>
-                <p className="text-xs text-muted-foreground">Research segment</p>
+                <p
+                  className={cn(
+                    'text-sm font-semibold transition-colors duration-300',
+                    segmentIsActive ? 'text-foreground' : 'text-muted-foreground'
+                  )}
+                >
+                  {segment.label}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {segment.fields.length} subcategories
+                </p>
               </div>
             </div>
+
             <div className="space-y-2">
-              {segment.subcategories.map((sub) => {
-                const subLit = lit.includes(`${segment.key}.${sub.key}`);
+              {segment.fields.map((field) => {
+                const fieldKey = `${segment.key}.${field}`;
+                const fieldIsActive = activeKeys.includes(fieldKey);
+
                 return (
                   <div
-                    key={sub.key}
+                    key={field}
                     className={cn(
-                      'flex items-center justify-between rounded-xl border px-3 py-2 text-sm transition-all duration-300',
-                      subLit
-                        ? 'border-emerald-500/35 bg-emerald-500/10 text-emerald-300 shadow-[0_0_14px_rgba(16,185,129,0.18)]'
+                      'flex items-center gap-2 rounded-xl border px-3 py-2 text-sm transition-all duration-300',
+                      fieldIsActive
+                        ? 'border-primary/30 bg-primary/10 text-foreground shadow-sm shadow-primary/10'
                         : 'border-border bg-black/10 text-muted-foreground'
                     )}
                   >
-                    <span>{sub.label}</span>
-                    <span className={cn('h-2.5 w-2.5 rounded-full', subLit ? 'bg-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.7)]' : 'bg-muted')} />
+                    <span
+                      className={cn(
+                        'h-2.5 w-2.5 rounded-full transition-all duration-300',
+                        fieldIsActive ? 'bg-primary shadow-[0_0_10px_rgba(99,102,241,0.8)]' : 'bg-muted'
+                      )}
+                    />
+                    <span>{formatLabel(field)}</span>
                   </div>
                 );
               })}
