@@ -4,7 +4,7 @@ import { MainLayout } from '@/components/layout/main-layout';
 import { JobCard } from '@/components/dashboard/job-card';
 import { StatsBar } from '@/components/dashboard/stats-bar';
 import { getCurrentWorkflowStage } from '@/lib/pipeline';
-import { getRecommendedJobs, getInterestedJobs, getVisibleJobs } from '@/lib/jobs';
+import { getRecommendedJobs, getAddedJobs, getVisibleJobs } from '@/lib/jobs';
 
 export default async function DashboardPage() {
   const visibleJobs = await getVisibleJobs();
