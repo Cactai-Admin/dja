@@ -8,7 +8,6 @@ import { getRecommendedJobs, getAddedJobs, getVisibleJobs } from '@/lib/jobs';
 
 export const dynamic = 'force-dynamic';
 
-export const dynamic = 'force-dynamic';
 
 export default async function DashboardPage() {
   const visibleJobs = await getVisibleJobs();
