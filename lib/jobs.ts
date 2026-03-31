@@ -50,5 +50,10 @@ export async function getRecommendedJobs(): Promise<PipelineJob[]> {
 
 export async function getAddedJobs(): Promise<PipelineJob[]> {
   const jobs = await getJobs();
-  return jobs.filter((j) => !!j.job_listing_added_at && j.pipeline_stage === 'new');
+  return jobs.filter((j) => !!j.job_listing_added_at && j.pipeline_stage === 'added_jobs');
+}
+
+// Backward compatibility while migrating callers
+export async function getInterestedJobs(): Promise<PipelineJob[]> {
+  return getAddedJobs();
 }

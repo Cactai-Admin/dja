@@ -160,3 +160,14 @@ The codebase is functional and now passes local lint/typecheck/build, but there 
 - Add API contract tests comparing `/api/jobs` list item shape vs `/api/jobs/[id]` detail shape.
 - Add schema guard tests ensuring invalid keyword categories are rejected.
 - Add versioning tests for resume/cover-letter writes.
+
+
+## Added-jobs taxonomy verification
+
+Follow-up validation on requested naming:
+- Canonical pipeline stage now uses `added_jobs` instead of `new`.
+- Job selection helper is now `getAddedJobs()` with `getInterestedJobs()` retained as a compatibility alias during migration.
+- Dashboard and the interested pipeline page now read from `getAddedJobs()` and filter by `pipeline_stage === "added_jobs"`.
+
+Remaining recommendation:
+- If you want a full terminology cleanup, rename `/pipeline/interested` route and sidebar/mobile labels to “Added Jobs” everywhere (currently route path is still `interested` for compatibility).

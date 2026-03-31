@@ -1,4 +1,3 @@
-'use client';
 /* ============================================================
    Main Layout — Responsive shell with desktop sidebar and mobile tray
    ============================================================ */
