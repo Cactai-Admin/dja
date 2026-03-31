@@ -114,24 +114,3 @@ NonErrorEmittedError: (Emitted value instead of an instance of Error)
  19 | Use these evidence units:
  20 | ${evidenceSummary || '[No evidence saved]'}
     `----
-
-Caused by:
-    0: failed to process js file
-    1: Syntax Error
-    at new WebpackError (/home/project/node_modules/next/dist/compiled/webpack/bundle5.js:28:493231)
-    at new NonErrorEmittedError (/home/project/node_modules/next/dist/compiled/webpack/bundle5.js:28:391836)
-    at processResult (/home/project/node_modules/next/dist/compiled/webpack/bundle5.js:28:398584)
-    at eval (/home/project/node_modules/next/dist/compiled/webpack/bundle5.js:28:400370)
-    at eval (/home/project/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8720)
-    at eval (/home/project/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:5903)
-    at r.callback (/home/project/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:4114)
-    at eval (/home/project/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js:185:9)
-
-Import trace for requested module:
-./app/jobs/[id]/page.tsx
-
-
-> Build failed because of webpack errors
-
-~/project 7s
-❯ 
